@@ -5,6 +5,7 @@ import CssBaseline from '@mui/material/CssBaseline'
 import Box from '@mui/material/Box';
 import './App.css';
 import { BasicCard } from './features/cards/Card'
+import { Header } from './components/Header'
 
 function App() {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)')
@@ -23,6 +24,7 @@ function App() {
     <>
       <ThemeProvider theme={theme}>
         <CssBaseline />
+        <Header />
         <Box sx={{ mx: "auto", width: 675 }}>
           <BasicCard />
         </Box>
