@@ -3,8 +3,8 @@ import Card from "@mui/material/Card"
 import CardContent from "@mui/material/CardContent"
 import Typography from '@mui/material/Typography';
 import ModeCommentIcon from '@mui/icons-material/ModeComment';
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
+import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
+import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
 import Button from '@mui/material/Button';
 
 function kFormatter(num) {
@@ -19,11 +19,11 @@ export const BasicCard = ({post, subreddit, setSubreddit}) => {
     return (
         <Card sx={{ minWidth: 275, maxWidth: 675, borderRadius: '1%', display: "flex", mb: 2.5 }}>
             <CardContent sx={{ backgroundColor: 'divider', height: '100', float: 'left', justifyItems: 'center' }}>
-                <ArrowDropUpIcon />
+                <ArrowCircleUpIcon />
                 <Typography sx={{ fontSize: 12, mb: 1 }}>
                     <strong>{kFormatter(post.score)}</strong>
                 </Typography>
-                <ArrowDropDownIcon />
+                <ArrowCircleDownIcon />
             </CardContent>
             <CardContent>
                 <Typography sx={{ fontSize: 12 }} color="text.secondary" gutterBottom>
