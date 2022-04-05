@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import Card from "@mui/material/Card"
 import CardContent from "@mui/material/CardContent"
 import Typography from '@mui/material/Typography';
@@ -6,6 +6,10 @@ import ModeCommentIcon from '@mui/icons-material/ModeComment';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import Button from '@mui/material/Button';
+
+function kFormatter(num) {
+    return Math.abs(num) > 999 ? Math.sign(num)*((Math.abs(num)/1000).toFixed(1)) + 'k' : Math.sign(num)*Math.abs(num)
+}
 
 export const BasicCard = ({post, subreddit, setSubreddit}) => {
     const handleClick = () => {
@@ -17,7 +21,7 @@ export const BasicCard = ({post, subreddit, setSubreddit}) => {
             <CardContent sx={{ backgroundColor: 'divider', height: '100', float: 'left', justifyItems: 'center' }}>
                 <ArrowDropUpIcon />
                 <Typography sx={{ fontSize: 12, mb: 1 }}>
-                    <strong>{post.score}</strong>
+                    <strong>{kFormatter(post.score)}</strong>
                 </Typography>
                 <ArrowDropDownIcon />
             </CardContent>
