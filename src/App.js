@@ -9,10 +9,10 @@ import { Header } from './components/Header'
 
 function App() {
   const [ posts, setPosts ] = useState([])
-  const [ subreddit, setSubreddit ] = useState('')
+  const [ subreddit, setSubreddit ] = useState('boardgames')
   useEffect(() => {
       const getPosts = async () => {
-          const response = await fetch('https://www.reddit.com/r/boardgames/comments/tpmc02/made_a_mosaic_for_my_game_room.json')
+          const response = await fetch(`https://www.reddit.com/r/${subreddit}.json`)
           const data = await response.json()
           setPosts(data.data.children)
       }
@@ -40,7 +40,10 @@ function App() {
         <CssBaseline />
         <Header />
         <Box sx={{ mx: "auto", width: 675 }}>
-          {<BasicCard posts={posts}/>}
+          {
+            (posts != null) ? posts.map((post, index) => 
+              <BasicCard key={index} post={post.data} />) : ''
+          }
         </Box>
       {/* </ThemeProvider> */}
     </>

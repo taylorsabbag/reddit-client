@@ -6,7 +6,7 @@ import ModeCommentIcon from '@mui/icons-material/ModeComment';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 
-export const BasicCard = ({article}) => {
+export const BasicCard = ({post}) => {
     
     
     return (
@@ -14,27 +14,27 @@ export const BasicCard = ({article}) => {
             <CardContent sx={{ backgroundColor: 'divider', height: '100', float: 'left', justifyItems: 'center' }}>
                 <ArrowDropUpIcon />
                 <Typography sx={{ fontSize: 12, mb: 1 }}>
-                    <strong>{article.score}</strong>
+                    <strong>{post.score}</strong>
                 </Typography>
                 <ArrowDropDownIcon />
             </CardContent>
             <CardContent>
                 <Typography sx={{ fontSize: 12 }} color="text.secondary" gutterBottom>
-                    Posted by u/{article.author} 8 days ago
+                    Posted by u/{post.author} 8 days ago
                 </Typography>
                 <Typography sx={{ mb: 1.5 }}>
-                    <a href={article.permalink} target="_blank" rel="noopener noreferrer">
-                        {`${article.title}`}
+                    <a href={post.permalink} target="_blank" rel="noopener noreferrer">
+                        {`${post.title}`}
                     </a>
                 </Typography>
                 <img 
                     alt="" 
-                    src={article.url_overridden_by_dest} 
+                    src={post.url_overridden_by_dest} 
                     style={{ minWidth: '50%', maxWidth: "100%", aspectRatio: 'initial' }} 
                 />
                 <Typography sx={{ fontSize: 12, mt: 3 }}>
                     <ModeCommentIcon fontSize='inherit' sx={{ pt: 0.3 }} />
-                    {article.num_comments} Comments
+                    {post.num_comments} Comments
                 </Typography>
             </CardContent>
         </Card>
