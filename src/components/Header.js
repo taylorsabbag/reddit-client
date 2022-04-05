@@ -15,10 +15,10 @@ export const Header = ({subreddit, setSubreddit}) => {
     
     return (
         <Box sx={{ width: '100%', textAlign: 'center'}}>
-           <Paper sx={{ mb: 3, padding: 2 }}>
+           <Paper sx={{ mb: 3, padding: 2 }} component='header'>
                 <Typography variant="h4" component='h1'>
                     Superliminal/
-                    <input type='text' onChange={debouncedHandleChange} placeholder={subreddit} />
+                    <input type='text' onChange={debouncedHandleChange} placeholder={subreddit} autoFocus/>
                 </Typography> 
             </Paper>
         </Box>
