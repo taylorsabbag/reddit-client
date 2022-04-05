@@ -38,7 +38,7 @@ function App() {
     <>
       {/* <ThemeProvider theme={theme}> */}
         <CssBaseline />
-        <Header />
+        <Header subreddit={subreddit} setSubreddit={setSubreddit} />
         <Box sx={{ mx: "auto", width: 675 }}>
           {
             (posts != null) ? posts.map((post, index) => 

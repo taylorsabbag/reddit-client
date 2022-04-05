@@ -8,9 +8,8 @@ import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 
 export const BasicCard = ({post}) => {
     
-    
     return (
-        <Card sx={{ minWidth: 275, maxWidth: 675, borderRadius: '1%', display: "flex" }}>
+        <Card sx={{ minWidth: 275, maxWidth: 675, borderRadius: '1%', display: "flex", mb: 2.5 }}>
             <CardContent sx={{ backgroundColor: 'divider', height: '100', float: 'left', justifyItems: 'center' }}>
                 <ArrowDropUpIcon />
                 <Typography sx={{ fontSize: 12, mb: 1 }}>
@@ -20,7 +19,7 @@ export const BasicCard = ({post}) => {
             </CardContent>
             <CardContent>
                 <Typography sx={{ fontSize: 12 }} color="text.secondary" gutterBottom>
-                    Posted by u/{post.author} 8 days ago
+                    Posted by u/{post.author} {post.created} 
                 </Typography>
                 <Typography sx={{ mb: 1.5 }}>
                     <a href={post.permalink} target="_blank" rel="noopener noreferrer">

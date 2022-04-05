@@ -1,0 +1,10 @@
+input {
+    display: inline-block;
+    background: none;
+    outline: none;
+    border: none;
+    appearance: none;
+    font-size: inherit;
+    font-style: inherit;
+    font-family: inherit;
+}
