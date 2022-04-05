@@ -34,7 +34,7 @@ export const BasicCard = () => {
                 <Typography sx={{ fontSize: 12 }} color="text.secondary" gutterBottom>
                     Posted by u/benbernards 8 days ago
                 </Typography>
-                <Typography sx={{ mb: 1.5 }} color="text.primary">
+                <Typography sx={{ mb: 1.5 }}>
                     {`${postTitle}`}
                 </Typography>
                 <img 
