@@ -37,7 +37,11 @@ export const BasicCard = () => {
                 <Typography sx={{ mb: 1.5 }} color="text.primary">
                     {`${postTitle}`}
                 </Typography>
-                <img alt="" src="https://i.imgur.com/x0aq9J4.jpeg" style={{ minWidth: '50%', maxWidth: "100%" }} />
+                <img 
+                    alt="" 
+                    src="https://i.imgur.com/x0aq9J4.jpeg" 
+                    style={{ minWidth: '50%', maxWidth: "100%", aspectRatio: 'initial' }} 
+                />
                 <hr />
                 <Typography sx={{ fontSize: 12, mt: 3 }}>
                     <ModeCommentIcon fontSize='inherit' sx={{ pt: 0.3 }} />
