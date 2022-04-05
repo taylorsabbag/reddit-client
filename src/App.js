@@ -9,7 +9,7 @@ import { Header } from './components/Header'
 
 function App() {
   const [ posts, setPosts ] = useState([])
-  const [ subreddit, setSubreddit ] = useState('boardgames')
+  const [ subreddit, setSubreddit ] = useState('all')
   useEffect(() => {
       const getPosts = async () => {
           const response = await fetch(`https://www.reddit.com/r/${subreddit}.json`)
