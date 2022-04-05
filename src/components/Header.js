@@ -8,7 +8,7 @@ export const Header = () => {
         <Box sx={{ height: 100, width: '100%', textAlign: 'center', mb: 1.5}}>
            <Card>
                 <Typography>
-                    <h1>Superliminal</h1>
+                    Superliminal
                 </Typography> 
             </Card>
         </Box>

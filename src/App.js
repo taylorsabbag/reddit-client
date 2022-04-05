@@ -22,13 +22,13 @@ function App() {
 
   return (
     <>
-      <ThemeProvider theme={theme}>
+      {/* <ThemeProvider theme={theme}> */}
         <CssBaseline />
         <Header />
         <Box sx={{ mx: "auto", width: 675 }}>
-          <BasicCard />
+          {<BasicCard />}
         </Box>
-      </ThemeProvider>
+      {/* </ThemeProvider> */}
     </>
   );
 }
