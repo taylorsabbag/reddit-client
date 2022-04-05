@@ -42,7 +42,7 @@ function App() {
         <Box sx={{ mx: "auto", width: 675 }}>
           {
             (posts != null) ? posts.map((post, index) => 
-              <BasicCard key={index} post={post.data} />) : ''
+              <BasicCard key={index} post={post.data} subreddit={subreddit} setSubreddit={setSubreddit} />) : ''
           }
         </Box>
       {/* </ThemeProvider> */}
