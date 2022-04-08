@@ -6,6 +6,10 @@ import ModeCommentIcon from '@mui/icons-material/ModeComment';
 import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
 import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
 import Button from '@mui/material/Button';
+import dayjs from 'dayjs'
+import RelativeTime from 'dayjs/plugin/relativeTime'
+
+dayjs.extend(RelativeTime)
 
 function kFormatter(num) {
     return Math.abs(num) > 999 ? Math.sign(num)*((Math.abs(num)/1000).toFixed(1)) + 'k' : Math.sign(num)*Math.abs(num)
@@ -37,7 +41,7 @@ export const BasicCard = ({post, subreddit, setSubreddit}) => {
                         </Button>
                     }
                     {post.subreddit !== subreddit && ' • '}
-                    Posted by u/{post.author} {post.created} 
+                    Posted by u/{post.author} {dayjs.unix(post.created).fromNow()} 
                 </Typography>
                 <Typography sx={{ mb: 1.5 }}>
                     <a href={post.permalink} target="_blank" rel="noopener noreferrer">
