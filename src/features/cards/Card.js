@@ -22,7 +22,7 @@ export const BasicCard = ({post, subreddit, setSubreddit}) => {
 
     return (
         <Card sx={{ minWidth: 275, maxWidth: 675, borderRadius: '1%', display: "flex", mb: 2.5 }}>
-            <CardContent sx={{ backgroundColor: 'divider', height: '100', float: 'left', justifyItems: 'center' }}>
+            <CardContent sx={{ backgroundColor: 'divider', height: '100', float: 'left', minWidth: '60px', maxWidth: '60px', textAlign: 'center' }}>
                 <ArrowCircleUpIcon />
                 <Typography sx={{ fontSize: 12, mb: 1 }}>
                     <strong>{kFormatter(post.score)}</strong>
@@ -48,11 +48,13 @@ export const BasicCard = ({post, subreddit, setSubreddit}) => {
                         {`${post.title}`}
                     </a>
                 </Typography>
-                <img 
-                    alt="" 
-                    src={post.url_overridden_by_dest} 
-                    style={{ minWidth: '50%', maxWidth: "100%", aspectRatio: 'initial' }} 
-                />
+                {post.url_overridden_by_dest &&
+                    <img 
+                        alt="" 
+                        src={post.url_overridden_by_dest} 
+                        style={{ minWidth: '50%', maxWidth: "100%", aspectRatio: 'initial' }} 
+                    />
+                }
                 <Typography>
                     {post.selftext}
                 </Typography>
