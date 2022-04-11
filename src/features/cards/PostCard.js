@@ -20,6 +20,7 @@ export const PostCard = ({post, subreddit}) => {
     return (
         <Card sx={{ minWidth: 275, maxWidth: 675, borderRadius: '1%', display: "flex", mb: 2.5 }}>
             
+            {/* Score Column */}
             <CardContent sx={{ backgroundColor: 'divider', height: '100', float: 'left', minWidth: '60px', maxWidth: '60px', textAlign: 'center' }}>
                 <ArrowCircleUpIcon />
                 <Typography sx={{ fontSize: 12, mb: 1 }}>
@@ -28,6 +29,7 @@ export const PostCard = ({post, subreddit}) => {
                 <ArrowCircleDownIcon />
             </CardContent>
 
+            {/* Main Post Content and Metadata */}
             <CardContent>
                 <Typography sx={{ fontSize: 12 }} color="text.secondary" gutterBottom>
                     {post.subreddit !== subreddit &&
