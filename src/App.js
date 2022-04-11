@@ -4,7 +4,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline'
 import Box from '@mui/material/Box';
 import './App.css';
-import { BasicCard } from './features/cards/Card'
+import { PostCard } from './features/cards/PostCard'
 import { Header } from './components/Header'
 
 function App() {
@@ -42,7 +42,7 @@ function App() {
         <Box sx={{ mx: "auto", width: 675 }}>
           {
             (posts != null) ? posts.map((post, index) => 
-              <BasicCard key={index} post={post.data} subreddit={subreddit} setSubreddit={setSubreddit} />) : ''
+              <PostCard key={index} post={post.data} subreddit={subreddit} setSubreddit={setSubreddit} />) : ''
           }
         </Box>
       {/* </ThemeProvider> */}

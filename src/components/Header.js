@@ -18,6 +18,7 @@ export const Header = ({subreddit, setSubreddit}) => {
            <Paper sx={{ mb: 3, padding: 2 }} component='header'>
                 <Typography variant="h4" component='h1'>
                     Superliminal/
+                    {/* TODO: Change value of input to subreddit */}
                     <input type='text' onChange={debouncedHandleChange} placeholder={subreddit} autoFocus/>
                 </Typography> 
             </Paper>

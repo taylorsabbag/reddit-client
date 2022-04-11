@@ -21,13 +21,14 @@ function truncateText(text, limit) {
     return text.substring(0, shortened)
 }
 
-export const BasicCard = ({post, subreddit, setSubreddit}) => {
+export const PostCard = ({post, subreddit, setSubreddit}) => {
     const handleClick = () => {
         setSubreddit(post.subreddit)
     }
 
     return (
         <Card sx={{ minWidth: 275, maxWidth: 675, borderRadius: '1%', display: "flex", mb: 2.5 }}>
+            
             <CardContent sx={{ backgroundColor: 'divider', height: '100', float: 'left', minWidth: '60px', maxWidth: '60px', textAlign: 'center' }}>
                 <ArrowCircleUpIcon />
                 <Typography sx={{ fontSize: 12, mb: 1 }}>
@@ -35,6 +36,7 @@ export const BasicCard = ({post, subreddit, setSubreddit}) => {
                 </Typography>
                 <ArrowCircleDownIcon />
             </CardContent>
+
             <CardContent>
                 <Typography sx={{ fontSize: 12 }} color="text.secondary" gutterBottom>
                     {post.subreddit !== subreddit &&
@@ -62,13 +64,14 @@ export const BasicCard = ({post, subreddit, setSubreddit}) => {
                     />
                 }
                 <Typography>
-                    {truncateText(post.selftext)}
+                    {truncateText(post.selftext, 400)}
                 </Typography>
                 <Typography sx={{ fontSize: 12, mt: 3 }}>
                     <ModeCommentIcon fontSize='inherit' sx={{ pt: 0.3 }} />
                     {post.num_comments} Comments
                 </Typography>
             </CardContent>
+            
         </Card>
     )
 }
