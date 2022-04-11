@@ -1,5 +1,6 @@
 import React from "react"
 import { useDispatch } from "react-redux";
+import { useNavigate } from 'react-router-dom'
 
 import Card from "@mui/material/Card"
 import CardContent from "@mui/material/CardContent"
@@ -7,16 +8,18 @@ import Typography from '@mui/material/Typography';
 import ModeCommentIcon from '@mui/icons-material/ModeComment';
 import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
 import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
-import Button from '@mui/material/Button';
+import { Button, CardActionArea, CardActions, Link } from '@mui/material'
 
 import { setSubreddit } from "./subredditsSlice";
 import { kFormatter, timeFromNow, truncateText } from '../../utilities/utilFunctions'
 
 export const PostCard = ({post, subreddit}) => {
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     
     const handleClick = () => {
         dispatch(setSubreddit(post.subreddit))
+        navigate(`/${post.subreddit}`)
     }
 
     return (
@@ -30,7 +33,7 @@ export const PostCard = ({post, subreddit}) => {
                 </Typography>
                 <ArrowCircleDownIcon />
             </CardContent>
-
+            <CardActionArea>
             {/* Main Post Content and Metadata */}
             <CardContent>
                 <Typography sx={{ fontSize: 12 }} color="text.secondary" gutterBottom>
@@ -66,7 +69,7 @@ export const PostCard = ({post, subreddit}) => {
                     {post.num_comments} Comments
                 </Typography>
             </CardContent>
-            
+            </CardActionArea>
         </Card>
     )
 }
