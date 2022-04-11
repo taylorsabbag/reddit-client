@@ -6,11 +6,7 @@ import ModeCommentIcon from '@mui/icons-material/ModeComment';
 import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
 import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
 import Button from '@mui/material/Button';
-import dayjs from 'dayjs'
-import RelativeTime from 'dayjs/plugin/relativeTime'
-import { kFormatter, truncateText } from '../../utilities/utilFunctions'
-
-dayjs.extend(RelativeTime)
+import { kFormatter, timeFromNow, truncateText } from '../../utilities/utilFunctions'
 
 export const PostCard = ({post, subreddit, setSubreddit}) => {
     const handleClick = () => {
@@ -40,7 +36,7 @@ export const PostCard = ({post, subreddit, setSubreddit}) => {
                         </Button>
                     }
                     {post.subreddit !== subreddit && ' • '}
-                    Posted by u/{post.author} {dayjs.unix(post.created).fromNow()} 
+                    Posted by u/{post.author} {timeFromNow(post.created)} 
                 </Typography>
                 <Typography sx={{ mb: 1.5 }}>
                     <a href={post.permalink} target="_blank" rel="noopener noreferrer">
