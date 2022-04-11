@@ -1,14 +1,14 @@
 import React, { useMemo, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useNavigate } from 'react-router-dom'
 
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline'
-import Box from '@mui/material/Box';
 import './App.css';
 
-import { PostCard } from './features/cards/PostCard'
+import { Subreddit } from './components/Subreddit'
+import { Comments } from './components/Comments'
 import { Header } from './components/Header'
 import { selectPosts, selectSubreddit, getPosts } from './features/cards/subredditsSlice';
 
@@ -16,8 +16,15 @@ function App() {
   const dispatch = useDispatch()
   const posts = useSelector(selectPosts)
   const subreddit = useSelector(selectSubreddit)
+  const navigate = useNavigate()
   // TODO: Add loading and error
   
+  useEffect(() => {
+    navigate(`all`)
+   
+  }, [])
+  
+
   useEffect(() => {
     dispatch(getPosts(subreddit))
 
@@ -43,12 +50,8 @@ function App() {
         <CssBaseline />
         <Header subreddit={subreddit} />
         <Routes>
-          <Box sx={{ mx: "auto", width: 675 }}>
-            {
-              (posts != null) ? posts.map((post, index) => 
-                <PostCard key={index} post={post.data} subreddit={subreddit} />) : ''
-            }
-          </Box>
+          <Route path='/:subreddit' element={<Subreddit subreddit={subreddit} posts={posts} />} />
+          <Route path='/:subreddit/comments/:postId/:postTitle' element={<Comments subreddit={subreddit} posts={posts} />} />
         </Routes>
       {/* </ThemeProvider> */}
     </>

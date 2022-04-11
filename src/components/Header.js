@@ -1,5 +1,6 @@
 import React, { useMemo } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import Box from '@mui/material/Box';
 import { Typography } from "@mui/material";
@@ -10,9 +11,11 @@ import { setSubreddit } from "../features/cards/subredditsSlice";
 
 export const Header = ({subreddit}) => {
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     
     const handleChange = ({target}) => {
         dispatch(setSubreddit(target.value))
+        navigate(target.value)
     }
 
     const debouncedHandleChange = useMemo(() => {

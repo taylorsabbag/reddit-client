@@ -34,7 +34,7 @@ export const PostCard = ({post, subreddit}) => {
             {/* Main Post Content and Metadata */}
             <CardContent>
                 <Typography sx={{ fontSize: 12 }} color="text.secondary" gutterBottom>
-                    {post.subreddit !== subreddit &&
+                    {post.subreddit.toLowerCase() !== subreddit.toLowerCase() &&
                         <Button sx={{ fontSize: 12, margin: 0, padding: 0.5 }}
                             variant="text"
                             color='secondary'
@@ -43,7 +43,7 @@ export const PostCard = ({post, subreddit}) => {
                             {post.subreddit_name_prefixed}
                         </Button>
                     }
-                    {post.subreddit !== subreddit && ' • '}
+                    {post.subreddit.toLowerCase() !== subreddit.toLowerCase() && ' • '}
                     Posted by u/{post.author} {timeFromNow(post.created)} 
                 </Typography>
                 <Typography sx={{ mb: 1.5 }}>
