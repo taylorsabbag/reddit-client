@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useEffect } from 'react';
+import React, { useMemo, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -13,6 +13,7 @@ function App() {
   const dispatch = useDispatch()
   const posts = useSelector(selectPosts)
   const subreddit = useSelector(selectSubreddit)
+  // TODO: Add loading and error
   
   useEffect(() => {
     dispatch(getPosts(subreddit))
