@@ -1,12 +1,16 @@
 import React, { useMemo } from "react";
+import { useDispatch } from "react-redux";
 import Box from '@mui/material/Box';
 import { Typography } from "@mui/material";
 import Paper from "@mui/material/Paper"
 import debounce from 'lodash.debounce'
+import { setSubreddit } from "../features/cards/subredditsSlice";
 
-export const Header = ({subreddit, setSubreddit}) => {
+export const Header = ({subreddit}) => {
+    const dispatch = useDispatch()
+    
     const handleChange = ({target}) => {
-        setSubreddit(target.value)
+        dispatch(setSubreddit(target.value))
     }
 
     const debouncedHandleChange = useMemo(() => {

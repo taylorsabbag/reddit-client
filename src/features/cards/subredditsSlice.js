@@ -17,8 +17,8 @@ export const subredditsSlice = createSlice({
         isLoading: false,
         hasError: false
     },
-    reducer: {
-        setSubreddit: (state, action) => (state.subreddits.subreddit = action.payload)
+    reducers: {
+        setSubreddit: (state, action) => { state.subreddit = action.payload }
     },
     extraReducers: {
         [getPosts.pending]: (state, action) => {
