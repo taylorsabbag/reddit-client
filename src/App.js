@@ -1,4 +1,5 @@
 import React, { useMemo, useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux'
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline'
@@ -6,19 +7,17 @@ import Box from '@mui/material/Box';
 import './App.css';
 import { PostCard } from './features/cards/PostCard'
 import { Header } from './components/Header'
+import { selectPosts, selectSubreddit, getPosts } from './features/cards/subredditsSlice';
 
 function App() {
-  const [ posts, setPosts ] = useState([])
-  const [ subreddit, setSubreddit ] = useState('all')
+  const dispatch = useDispatch()
+  const posts = useSelector(selectPosts)
+  const subreddit = useSelector(selectSubreddit)
+  
   useEffect(() => {
-      const getPosts = async () => {
-          const response = await fetch(`https://www.reddit.com/r/${subreddit}.json`)
-          const data = await response.json()
-          setPosts(data.data.children)
-      }
-      getPosts()
+    dispatch(getPosts(subreddit))
 
-      return () => {
+    return () => {
     }
   }, [subreddit])
   
@@ -38,11 +37,11 @@ function App() {
     <>
       {/* <ThemeProvider theme={theme}> */}
         <CssBaseline />
-        <Header subreddit={subreddit} setSubreddit={setSubreddit} />
+        <Header subreddit={subreddit} />
         <Box sx={{ mx: "auto", width: 675 }}>
           {
             (posts != null) ? posts.map((post, index) => 
-              <PostCard key={index} post={post.data} subreddit={subreddit} setSubreddit={setSubreddit} />) : ''
+              <PostCard key={index} post={post.data} subreddit={subreddit} />) : ''
           }
         </Box>
       {/* </ThemeProvider> */}
