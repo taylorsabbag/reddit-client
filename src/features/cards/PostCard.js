@@ -8,18 +8,9 @@ import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
 import Button from '@mui/material/Button';
 import dayjs from 'dayjs'
 import RelativeTime from 'dayjs/plugin/relativeTime'
+import { kFormatter, truncateText } from '../../utilities/utilFunctions'
 
 dayjs.extend(RelativeTime)
-
-function kFormatter(num) {
-    return Math.abs(num) > 999 ? Math.sign(num)*((Math.abs(num)/1000).toFixed(1)) + 'k' : Math.sign(num)*Math.abs(num)
-}
-
-function truncateText(text, limit) {
-    const shortened = text.indexOf(' ', limit)
-    if (shortened === -1) return text
-    return text.substring(0, shortened)
-}
 
 export const PostCard = ({post, subreddit, setSubreddit}) => {
     const handleClick = () => {
