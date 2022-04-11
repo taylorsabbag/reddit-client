@@ -1,4 +1,5 @@
 import React from "react"
+import { useDispatch } from "react-redux";
 import Card from "@mui/material/Card"
 import CardContent from "@mui/material/CardContent"
 import Typography from '@mui/material/Typography';
@@ -6,11 +7,14 @@ import ModeCommentIcon from '@mui/icons-material/ModeComment';
 import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
 import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
 import Button from '@mui/material/Button';
+import { setSubreddit } from "./subredditsSlice";
 import { kFormatter, timeFromNow, truncateText } from '../../utilities/utilFunctions'
 
-export const PostCard = ({post, subreddit, setSubreddit}) => {
+export const PostCard = ({post, subreddit}) => {
+    const dispatch = useDispatch()
+    
     const handleClick = () => {
-        setSubreddit(post.subreddit)
+        dispatch(setSubreddit(post.subreddit))
     }
 
     return (
