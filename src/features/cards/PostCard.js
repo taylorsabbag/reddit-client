@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 import ModeCommentIcon from '@mui/icons-material/ModeComment';
 import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
 import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
-import { Button, CardActionArea, CardActions, Link } from '@mui/material'
+import { Button, CardActionArea } from '@mui/material'
 
 import { setSubreddit } from "./subredditsSlice";
 import { kFormatter, timeFromNow, truncateText } from '../../utilities/utilFunctions'
@@ -22,6 +22,10 @@ export const PostCard = ({post, subreddit}) => {
         navigate(`/${post.subreddit}`)
     }
 
+    const handleClickForComments = () => {
+        navigate(`${post.permalink}`)
+    }
+
     return (
         <Card sx={{ minWidth: 275, maxWidth: 675, borderRadius: '1%', display: "flex", mb: 2.5 }}>
             
@@ -33,42 +37,41 @@ export const PostCard = ({post, subreddit}) => {
                 </Typography>
                 <ArrowCircleDownIcon />
             </CardContent>
-            <CardActionArea>
+
             {/* Main Post Content and Metadata */}
-            <CardContent>
-                <Typography sx={{ fontSize: 12 }} color="text.secondary" gutterBottom>
-                    {post.subreddit.toLowerCase() !== subreddit.toLowerCase() &&
-                        <Button sx={{ fontSize: 12, margin: 0, padding: 0.5 }}
-                            variant="text"
-                            color='secondary'
-                            onClick={handleClick}
-                        >
-                            {post.subreddit_name_prefixed}
-                        </Button>
-                    }
-                    {post.subreddit.toLowerCase() !== subreddit.toLowerCase() && ' • '}
-                    Posted by u/{post.author} {timeFromNow(post.created)} 
-                </Typography>
-                <Typography sx={{ mb: 1.5 }}>
-                    <a href={post.permalink} target="_blank" rel="noopener noreferrer">
+            <CardActionArea onClick={handleClickForComments} target="_blank" rel="noopener noreferrer">
+                <CardContent>
+                    <Typography sx={{ fontSize: 12 }} color="text.secondary" gutterBottom>
+                        {post.subreddit.toLowerCase() !== subreddit.toLowerCase() &&
+                            <Button sx={{ fontSize: 12, margin: 0, padding: 0.5 }}
+                                variant="text"
+                                color='secondary'
+                                onClick={handleClick}
+                            >
+                                {post.subreddit_name_prefixed}
+                            </Button>
+                        }
+                        {post.subreddit.toLowerCase() !== subreddit.toLowerCase() && ' • '}
+                        Posted by u/{post.author} {timeFromNow(post.created)} 
+                    </Typography>
+                    <Typography sx={{ mb: 1.5 }}>
                         {`${post.title}`}
-                    </a>
-                </Typography>
-                {post.url_overridden_by_dest &&
-                    <img 
-                        alt="" 
-                        src={post.url_overridden_by_dest} 
-                        style={{ minWidth: '50%', maxWidth: "100%", aspectRatio: 'initial' }} 
-                    />
-                }
-                <Typography>
-                    {truncateText(post.selftext, 400)}
-                </Typography>
-                <Typography sx={{ fontSize: 12, mt: 3 }}>
-                    <ModeCommentIcon fontSize='inherit' sx={{ pt: 0.3 }} />
-                    {post.num_comments} Comments
-                </Typography>
-            </CardContent>
+                    </Typography>
+                    {post.url_overridden_by_dest &&
+                        <img 
+                            alt="" 
+                            src={post.url_overridden_by_dest} 
+                            style={{ minWidth: '50%', maxWidth: "100%", aspectRatio: 'initial' }} 
+                        />
+                    }
+                    <Typography>
+                        {truncateText(post.selftext, 400)}
+                    </Typography>
+                    <Typography sx={{ fontSize: 12, mt: 3 }}>
+                        <ModeCommentIcon fontSize='inherit' sx={{ pt: 0.3 }} />
+                        {post.num_comments} Comments
+                    </Typography>
+                </CardContent>
             </CardActionArea>
         </Card>
     )
