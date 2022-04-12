@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 import ModeCommentIcon from '@mui/icons-material/ModeComment';
 import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
 import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
-import { Button, CardActionArea } from '@mui/material'
+import { Button, CardActionArea, CardActions } from '@mui/material'
 
 import { setSubreddit } from "./subredditsSlice";
 import { kFormatter, timeFromNow, truncateText } from '../../utilities/utilFunctions'
@@ -20,10 +20,6 @@ export const PostCard = ({post, subreddit}) => {
     const handleClick = () => {
         dispatch(setSubreddit(post.subreddit))
         navigate(`/${post.subreddit}`)
-    }
-
-    const handleClickForComments = () => {
-        navigate(`${post.permalink}`)
     }
 
     return (
@@ -39,7 +35,7 @@ export const PostCard = ({post, subreddit}) => {
             </CardContent>
 
             {/* Main Post Content and Metadata */}
-            <CardActionArea onClick={handleClickForComments} target="_blank" rel="noopener noreferrer">
+            <CardActionArea onClick={() => {navigate(`${post.permalink}`)}} target="_blank" rel="noopener noreferrer">
                 <CardContent>
                     <Typography sx={{ fontSize: 12 }} color="text.secondary" gutterBottom>
                         {post.subreddit.toLowerCase() !== subreddit.toLowerCase() &&
