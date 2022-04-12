@@ -21,15 +21,10 @@ function App() {
   
   useEffect(() => {
     navigate(`all`)
-   
   }, [])
   
-
   useEffect(() => {
     dispatch(getPosts(subreddit))
-
-    return () => {
-    }
   }, [subreddit])
   
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)')
@@ -46,14 +41,14 @@ function App() {
 
   return (
     <>
-      {/* <ThemeProvider theme={theme}> */}
+      <ThemeProvider theme={theme}>
         <CssBaseline />
         <Header subreddit={subreddit} />
         <Routes>
           <Route path='/:subreddit' element={<Subreddit subreddit={subreddit} posts={posts} />} />
           <Route path='/:subreddit/comments/:postId/:postTitle' element={<Comments subreddit={subreddit} posts={posts} />} />
         </Routes>
-      {/* </ThemeProvider> */}
+      </ThemeProvider>
     </>
   );
 }
