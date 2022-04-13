@@ -1,5 +1,5 @@
 import React from "react"
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom'
 
 import Card from "@mui/material/Card"
@@ -8,16 +8,21 @@ import Typography from '@mui/material/Typography';
 import ModeCommentIcon from '@mui/icons-material/ModeComment';
 import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
 import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
-import { Button, CardActionArea, CardActions } from '@mui/material'
+import PushPinIcon from '@mui/icons-material/PushPin';
+import { CardActionArea, Link } from '@mui/material'
 
-import { setSubreddit } from "./subredditsSlice";
+import { setSubreddit, selectSubreddit } from "./subredditsSlice";
 import { kFormatter, timeFromNow, truncateText } from '../../utilities/utilFunctions'
 
-export const PostCard = ({post, subreddit}) => {
+// TODODODODODDO: make Link work inside of CardActionArea
+
+export const PostCard = ({post}) => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const subreddit = useSelector(selectSubreddit)
     
-    const handleClick = () => {
+    const handleClick = (e) => {
+        e.preventDefault()
         dispatch(setSubreddit(post.subreddit))
         navigate(`/${post.subreddit}`)
     }
@@ -38,14 +43,15 @@ export const PostCard = ({post, subreddit}) => {
             <CardActionArea onClick={() => {navigate(`${post.permalink}`)}} target="_blank" rel="noopener noreferrer">
                 <CardContent>
                     <Typography sx={{ fontSize: 12 }} color="text.secondary" gutterBottom>
+                        {post.stickied &&
+                            <PushPinIcon sx={{ transform: 'rotate(-45deg)' }} fontSize='inherit' />
+                        }
                         {post.subreddit.toLowerCase() !== subreddit.toLowerCase() &&
-                            <Button sx={{ fontSize: 12, margin: 0, padding: 0.5 }}
-                                variant="text"
-                                color='secondary'
+                            <Link href={subreddit}
                                 onClick={handleClick}
                             >
                                 {post.subreddit_name_prefixed}
-                            </Button>
+                            </Link>
                         }
                         {post.subreddit.toLowerCase() !== subreddit.toLowerCase() && ' • '}
                         Posted by u/{post.author} {timeFromNow(post.created)} 
@@ -64,7 +70,7 @@ export const PostCard = ({post, subreddit}) => {
                         {truncateText(post.selftext, 400)}
                     </Typography>
                     <Typography sx={{ fontSize: 12, mt: 3 }}>
-                        <ModeCommentIcon fontSize='inherit' sx={{ pt: 0.3 }} />
+                        <ModeCommentIcon fontSize='inherit' sx={{ pt: 0.2 }} />
                         {post.num_comments} Comments
                     </Typography>
                 </CardContent>

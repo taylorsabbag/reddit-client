@@ -10,13 +10,15 @@ import './App.css';
 import { Subreddit } from './components/Subreddit'
 import { Comments } from './components/Comments'
 import { Header } from './components/Header'
-import { selectPosts, selectSubreddit, getPosts } from './features/cards/subredditsSlice';
+import { selectPosts, selectSubreddit, selectSort, getPosts } from './features/cards/subredditsSlice';
 
 function App() {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
+
   const posts = useSelector(selectPosts)
   const subreddit = useSelector(selectSubreddit)
-  const navigate = useNavigate()
+  const sort = useSelector(selectSort)
   // TODO: Add loading and error
   
   useEffect(() => {
@@ -24,8 +26,8 @@ function App() {
   }, [])
   
   useEffect(() => {
-    dispatch(getPosts(subreddit))
-  }, [subreddit])
+    dispatch(getPosts({subreddit, sort}))
+  }, [subreddit, sort])
   
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)')
 
@@ -41,14 +43,14 @@ function App() {
 
   return (
     <>
-      <ThemeProvider theme={theme}>
+      {/* <ThemeProvider theme={theme}> */}
         <CssBaseline />
         <Header subreddit={subreddit} />
         <Routes>
-          <Route path='/:subreddit' element={<Subreddit subreddit={subreddit} posts={posts} />} />
-          <Route path='/:subreddit/comments/:postId/:postTitle' element={<Comments subreddit={subreddit} posts={posts} />} />
+          <Route path='/:subreddit' element={<Subreddit posts={posts} />} />
+          {/* <Route path='/:subreddit/comments/:postId/:postTitle' element={<Comments subreddit={subreddit} posts={posts} />} /> */}
         </Routes>
-      </ThemeProvider>
+      {/* </ThemeProvider> */}
     </>
   );
 }

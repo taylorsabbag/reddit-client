@@ -4,12 +4,12 @@ import Box from '@mui/material/Box';
 
 import { PostCard } from '../features/cards/PostCard'
 
-export const Subreddit = ({posts, subreddit}) => {
+export const Subreddit = ({posts}) => {
   return (
     <Box sx={{ mx: "auto", width: 675 }}>
         {
             (posts != null) ? posts.map((post, index) => 
-                <PostCard key={index} post={post.data} subreddit={subreddit} />) : ''
+                <PostCard key={index} post={post.data} />) : ''
         }
     </Box>
   )
